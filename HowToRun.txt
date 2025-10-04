@@ -1,0 +1,9 @@
+Can be found in README.txt
+
+How to run lisp.c:
+
+To Compile: gcc lisp.c -lm
+
+To Run: 
+Regular Interpreter: ./a.out
+Testing Suite: ./a.out --test

@@ -1,0 +1,398 @@
+Test Plan:
+
+Sprint 1:
+- Tested numbers, strings, symbols, nil.
+- Checked cons, car, cdr on simple and nested lists.
+- Verified quote and shorthand quoting.
+
+Sprint 2:
+- Tested null, symbol, number, string, list.
+- Checked both true/false cases on all atom types and lists.
+
+Sprint 3:
+- add, sub, mul, div, mod with ints, floats, negatives, mixed.
+- Comparisons: lt, gt, lte, gte, eq.
+- Edge cases: division, modulo with negatives, float equality.
+
+Sprint 5:
+- set on ints, floats, strings, lists.
+- Reassignment and lookup.
+- Using variables in expressions.
+
+Sprint 6:
+- and, or, not including short-circuiting.
+- if with true/false/edge cases.
+- cond with multiple and default clauses.
+
+Sprint 7:
+- lambda creation and application.
+- define constants and functions.
+- Recursion (fact, fib).
+- Higher-order lambdas with functions as args.
+
+Sprint 8:
+- map with arithmetic, predicates, user functions.
+- Nested maps on lists of lists.
+- Edge cases: empty lists, booleans, recursion inside map.
+
+Results
+- Total tests: 350
+- Passed: 350
+- Failed: 0
+
+---------------------------------------------------------------------------------------------------------------------
+
+PASSED! Input: () Output: ()
+PASSED! Input: 42 Output: 42
+PASSED! Input: -15 Output: -15
+PASSED! Input: 0 Output: 0
+PASSED! Input: 3.14 Output: 3.14
+PASSED! Input: -2.5 Output: -2.5
+PASSED! Input: "hello" Output: "hello"
+PASSED! Input: "" Output: ""
+PASSED! Input: "hello world" Output: "hello world"
+PASSED! Input: 'x Output: x
+PASSED! Input: (quote 42) Output: 42
+PASSED! Input: (quote x) Output: x
+PASSED! Input: (quote "abc") Output: "abc"
+PASSED! Input: (quote ()) Output: ()
+PASSED! Input: (quote (1 2 3)) Output: (1 2 3)
+PASSED! Input: (quote (a (b c) d)) Output: (a (b c) d)
+PASSED! Input: '(1 2 3) Output: (1 2 3)
+PASSED! Input: '((a b) (c d)) Output: ((a b) (c d))
+PASSED! Input: (cons 1 '(2 3)) Output: (1 2 3)
+PASSED! Input: (cons 5 '()) Output: (5)
+PASSED! Input: (car '(a b c)) Output: a
+PASSED! Input: (cdr '(a b c)) Output: (b c)
+PASSED! Input: (cons 'a '()) Output: (a)
+PASSED! Input: '((a (7 8 9) x) (b (4 5 6) y)) Output: ((a (7 8 9) x) (b (4 5 6) y))
+PASSED! Input: (cons "hi" '("there")) Output: ("hi" "there")
+PASSED! Input: (car '(1)) Output: 1
+PASSED! Input: (cdr '(1)) Output: ()
+PASSED! Input: (car '((1 2) (3 4))) Output: (1 2)
+PASSED! Input: (cdr '((1 2) (3 4))) Output: ((3 4))
+PASSED! Input: (cons '(1 2) '(3 4)) Output: ((1 2) 3 4)
+PASSED! Input: (cons '(1) '((2) (3))) Output: ((1) (2) (3))
+PASSED! Input: (car '((a b) c d)) Output: (a b)
+PASSED! Input: (cdr '((a b) c d)) Output: (c d)
+PASSED! Input: (cons '() '(1 2 3)) Output: (() 1 2 3)
+PASSED! Input: (cons 'a (cons 'b '())) Output: (a b)
+PASSED! Input: (car (cons 10 '(20 30))) Output: 10
+PASSED! Input: (cdr (cons 10 '(20 30))) Output: (20 30)
+PASSED! Input: (cons (cons 1 '(2)) '(3 4)) Output: ((1 2) 3 4)
+PASSED! Input: (quote ("hi" 1 (2 3) ())) Output: ("hi" 1 (2 3) ())
+PASSED! Input: (cons 1 (cons 2 (cons 3 '()))) Output: (1 2 3)
+PASSED! Input: (car '("x")) Output: "x"
+PASSED! Input: (cdr '("x")) Output: ()
+PASSED! Input: (car (cdr '(1 2 3))) Output: 2
+PASSED! Input: (cdr (cdr '(1 2 3))) Output: (3)
+PASSED! Input: (cdr (cdr (cdr '(1 2 3)))) Output: ()
+PASSED! Input: (cons 0 (cons 1 (cons 2 '()))) Output: (0 1 2)
+PASSED! Input: (cons 'x (cons 'y (cons 'z '()))) Output: (x y z)
+PASSED! Input: (null '()) Output: True
+PASSED! Input: (null 5) Output: ()
+PASSED! Input: (null "hi") Output: ()
+PASSED! Input: (null '(1)) Output: ()
+PASSED! Input: (null (cdr '(a))) Output: True
+PASSED! Input: (symbol 'abc) Output: True
+PASSED! Input: (symbol "abc") Output: ()
+PASSED! Input: (symbol 123) Output: ()
+PASSED! Input: (symbol ()) Output: ()
+PASSED! Input: (number 123) Output: True
+PASSED! Input: (number -5) Output: True
+PASSED! Input: (number 0) Output: True
+PASSED! Input: (number 3.14) Output: True
+PASSED! Input: (number "hi") Output: ()
+PASSED! Input: (string "abc") Output: True
+PASSED! Input: (string "") Output: True
+PASSED! Input: (string 123) Output: ()
+PASSED! Input: (string ()) Output: ()
+PASSED! Input: (list '(1 2 3)) Output: True
+PASSED! Input: (list ()) Output: True
+PASSED! Input: (list 5) Output: ()
+PASSED! Input: (list "hi") Output: ()
+PASSED! Input: (list (cons 1 '(2 3))) Output: True
+PASSED! Input: (null (car '())) Output: True
+PASSED! Input: (symbol '()) Output: ()
+PASSED! Input: (number '()) Output: ()
+PASSED! Input: (string '()) Output: ()
+PASSED! Input: (list '()) Output: True
+PASSED! Input: (symbol 'x) Output: True
+PASSED! Input: (number -2.5) Output: True
+PASSED! Input: (list (cdr '(a))) Output: True
+PASSED! Input: (string (quote hi)) Output: ()
+PASSED! Input: (number (quote hi)) Output: ()
+PASSED! Input: (symbol (quote hi)) Output: True
+PASSED! Input: (null (list '())) Output: ()
+PASSED! Input: (list (list 1 2)) Output: True
+PASSED! Input: (list (cons 'a '())) Output: True
+PASSED! Input: (list (cons '() '())) Output: True
+PASSED! Input: (null (cdr (cdr '(a b))))) Output: True
+PASSED! Input: (symbol (car '(x y))) Output: True
+PASSED! Input: (string (car '("abc" "def"))) Output: True
+PASSED! Input: (number (car '(1 2 3))) Output: True
+PASSED! Input: (list (cdr '(1 2))) Output: True
+PASSED! Input: (symbol (cdr '(1))) Output: ()
+PASSED! Input: (string (cdr '("a"))) Output: ()
+PASSED! Input: (number (cdr '(5))) Output: ()
+PASSED! Input: (null (car '(1))) Output: ()
+PASSED! Input: (null (cdr '(1 2))) Output: ()
+PASSED! Input: (null (cdr (cdr '(1)))) Output: True
+PASSED! Input: (add 2 3) Output: 5
+PASSED! Input: (add -5 3) Output: -2
+PASSED! Input: (add 0 5) Output: 5
+PASSED! Input: (add 1.5 2.5) Output: 4.0
+PASSED! Input: (add 3 2.5) Output: 5.5
+PASSED! Input: (sub 10 4) Output: 6
+PASSED! Input: (sub 3 10) Output: -7
+PASSED! Input: (sub 5 0) Output: 5
+PASSED! Input: (sub 5.5 2.5) Output: 3.0
+PASSED! Input: (sub 10 2.5) Output: 7.5
+PASSED! Input: (mul 4 5) Output: 20
+PASSED! Input: (mul -3 4) Output: -12
+PASSED! Input: (mul 0 100) Output: 0
+PASSED! Input: (mul 2.5 4.0) Output: 10.0
+PASSED! Input: (mul 3 2.5) Output: 7.5
+PASSED! Input: (div 20 4) Output: 5
+PASSED! Input: (div 10.0 2.0) Output: 5.0
+PASSED! Input: (div 15 2.0) Output: 7.5
+PASSED! Input: (div -12 3) Output: -4
+PASSED! Input: (mod 10 3) Output: 1
+PASSED! Input: (mod 10 5) Output: 0
+PASSED! Input: (mod 10.5 3.0) Output: 1.5
+PASSED! Input: (mod -13 5) Output: -3
+PASSED! Input: (lt 3 5) Output: True
+PASSED! Input: (lt 5 3) Output: ()
+PASSED! Input: (lt 5 5) Output: ()
+PASSED! Input: (gt 5 3) Output: True
+PASSED! Input: (gt 3 5) Output: ()
+PASSED! Input: (gt 5 5) Output: ()
+PASSED! Input: (lte 3 5) Output: True
+PASSED! Input: (lte 5 5) Output: True
+PASSED! Input: (lte 7 5) Output: ()
+PASSED! Input: (gte 7 5) Output: True
+PASSED! Input: (gte 5 5) Output: True
+PASSED! Input: (gte 3 5) Output: ()
+PASSED! Input: (eq 5 5) Output: True
+PASSED! Input: (eq 5 6) Output: ()
+PASSED! Input: (eq 3.14 3.14) Output: True
+PASSED! Input: (eq 3.14 2.71) Output: ()
+PASSED! Input: (eq "hi" "hi") Output: True
+PASSED! Input: (eq "hi" "bye") Output: ()
+PASSED! Input: (eq () ()) Output: True
+PASSED! Input: (eq '(1 2) '(1 3)) Output: ()
+PASSED! Input: (not True) Output: ()
+PASSED! Input: (not ()) Output: True
+PASSED! Input: (not 5) Output: ()
+PASSED! Input: (not "hi") Output: ()
+PASSED! Input: (not (quote ())) Output: True
+PASSED! Input: (set x 10) Output: 10
+PASSED! Input: x Output: 10
+PASSED! Input: (add x 5) Output: 15
+PASSED! Input: (set y (add 5 5)) Output: 10
+PASSED! Input: y Output: 10
+PASSED! Input: (set pi 3.14) Output: 3.14
+PASSED! Input: pi Output: 3.14
+PASSED! Input: (set msg "hello") Output: "hello"
+PASSED! Input: msg Output: "hello"
+PASSED! Input: (set lst (quote (1 2 3))) Output: (1 2 3)
+PASSED! Input: lst Output: (1 2 3)
+PASSED! Input: (set x 200) Output: 200
+PASSED! Input: x Output: 200
+PASSED! Input: (set z (sub 50 20)) Output: 30
+PASSED! Input: z Output: 30
+PASSED! Input: (set a (mul 6 7)) Output: 42
+PASSED! Input: a Output: 42
+PASSED! Input: (set b (div 22 2)) Output: 11
+PASSED! Input: b Output: 11
+PASSED! Input: (set c (mod 10 3)) Output: 1
+PASSED! Input: c Output: 1
+PASSED! Input: (set str (quote "abc")) Output: "abc"
+PASSED! Input: str Output: "abc"
+PASSED! Input: (set sym 'foo) Output: foo
+PASSED! Input: sym Output: foo
+PASSED! Input: (eq 3 (add 1 2)) Output: True
+PASSED! Input: (eq 5 (div 11 2)) Output: True
+PASSED! Input: (quote 42) Output: 42
+PASSED! Input: (quote x) Output: x
+PASSED! Input: (quote "hi") Output: "hi"
+PASSED! Input: (quote ()) Output: ()
+PASSED! Input: (quote (1 2 3)) Output: (1 2 3)
+PASSED! Input: (quote (a (b c) d)) Output: (a (b c) d)
+PASSED! Input: (quote (1 x "s" ())) Output: (1 x "s" ())
+PASSED! Input: '(1 2 3) Output: (1 2 3)
+PASSED! Input: '((a b) (c d)) Output: ((a b) (c d))
+PASSED! Input: (set nested '(1 (2 (3 (4))))) Output: (1 (2 (3 (4))))
+PASSED! Input: nested Output: (1 (2 (3 (4))))
+PASSED! Input: (set boolTrue (lt 2 3)) Output: True
+PASSED! Input: boolTrue Output: True
+PASSED! Input: (set boolFalse (gt 5 10)) Output: ()
+PASSED! Input: boolFalse Output: ()
+PASSED! Input: (set n1 100) Output: 100
+PASSED! Input: (set n2 200) Output: 200
+PASSED! Input: (add n1 n2) Output: 300
+PASSED! Input: (sub n2 n1) Output: 100
+PASSED! Input: (mul n1 n2) Output: 20000
+PASSED! Input: (div n2 n1) Output: 2
+PASSED! Input: (quote (cons 1 (cons 2 (cons 3 '()))) Output: (cons 1 (cons 2 (cons 3 (quote ()))))
+PASSED! Input: (set quoted '(a b c)) Output: (a b c)
+PASSED! Input: quoted Output: (a b c)
+PASSED! Input: (and True True) Output: True
+PASSED! Input: (and True ()) Output: ()
+PASSED! Input: (and () (div 1 0)) Output: ()
+PASSED! Input: (and True 5) Output: 5
+PASSED! Input: (and 5 True) Output: True
+PASSED! Input: (and 5 ()) Output: ()
+PASSED! Input: (or True 99) Output: True
+PASSED! Input: (or () 99) Output: 99
+PASSED! Input: (or () ()) Output: ()
+PASSED! Input: (or 5 ()) Output: 5
+PASSED! Input: (or () 5) Output: 5
+PASSED! Input: (if (lt 2 3) 100 200) Output: 100
+PASSED! Input: (if (gt 2 3) 100 200) Output: 200
+PASSED! Input: (if (lt 1 2) 111) Output: 111
+PASSED! Input: (if (gt 1 2) 111) Output: ()
+PASSED! Input: (if (eq 5 5) 'yes 'no) Output: yes
+PASSED! Input: (if (eq 5 6) 'yes 'no) Output: no
+PASSED! Input: (if True 1 2) Output: 1
+PASSED! Input: (if () 1 2) Output: 2
+PASSED! Input: (cond ((lt 2 3) 111) ((gt 2 3) 222)) Output: 111
+PASSED! Input: (cond ((eq 1 2) 333) ((eq 2 2) 444)) Output: 444
+PASSED! Input: (cond ((eq 1 2) 'a) ((eq 1 1) 'b)) Output: b
+PASSED! Input: (cond ((eq 1 1) 'a) ((eq 1 1) 'b)) Output: a
+PASSED! Input: (cond (() 'x) (True 'y)) Output: y
+PASSED! Input: (cond (() 'x) (() 'y) (True 'z)) Output: z
+PASSED! Input: (and (lt 2 3) (gt 5 2)) Output: True
+PASSED! Input: (and (lt 2 3) (gt 2 5)) Output: ()
+PASSED! Input: (or (lt 2 3) (gt 2 5)) Output: True
+PASSED! Input: (or (gt 5 2) (lt 1 0)) Output: True
+PASSED! Input: (if (and (lt 2 3) (gt 5 2)) 1 0) Output: 1
+PASSED! Input: (if (or (lt 2 1) (eq 4 4)) 1 0) Output: 1
+PASSED! Input: (if (not ()) 42 99) Output: 42
+PASSED! Input: (if (not True) 42 99) Output: 99
+PASSED! Input: (cond ((and True True) 1) ((or True ()) 2)) Output: 1
+PASSED! Input: (cond ((and True ()) 1) ((or () ()) 2) (True 3)) Output: 3
+PASSED! Input: (if (lt (add 2 2) 5) 'ok 'fail) Output: ok
+PASSED! Input: (if (gt (mul 3 3) 9) 'ok 'fail) Output: fail
+PASSED! Input: (if (lte 5 5) 'eq 'no) Output: eq
+PASSED! Input: (if (gte 5 5) 'eq 'no) Output: eq
+PASSED! Input: (cond ((eq (mod 10 5) 0) 'div) (True 'no)) Output: div
+PASSED! Input: (cond ((lt (div 10 2) 5) 'small) (True 'big)) Output: big
+PASSED! Input: (and (not ()) (eq 3 3)) Output: True
+PASSED! Input: (or (not ()) (eq 3 4)) Output: True
+PASSED! Input: (if (and True (not ())) 'yes 'no) Output: yes
+PASSED! Input: (if (or () (and (eq 1 2) True)) 'bad 'ok) Output: ok
+PASSED! Input: (cond (() 'fail) ((eq 1 2) 'fail) ((eq 2 2) 'pass)) Output: pass
+PASSED! Input: (cond (() 0) (() 1) (() 2) (True 3)) Output: 3
+PASSED! Input: (if (and (lt 1 2) (lt 2 3)) 'chain 'no) Output: chain
+PASSED! Input: (define square (lambda (n) (* n n))) Output: (lambda (n) (* n n))
+PASSED! Input: (square 9) Output: 81
+PASSED! Input: (define add3 (lambda (x y z) (+ (+ x y) z))) Output: (lambda (x y z) (+ (+ x y) z))
+PASSED! Input: (add3 1 2 3) Output: 6
+PASSED! Input: (define double (lambda (n) (* 2 n))) Output: (lambda (n) (* 2 n))
+PASSED! Input: (double 10) Output: 20
+PASSED! Input: (define inc (lambda (n) (+ n 1))) Output: (lambda (n) (+ n 1))
+PASSED! Input: (inc 7) Output: 8
+PASSED! Input: (define dec (lambda (n) (- n 1))) Output: (lambda (n) (- n 1))
+PASSED! Input: (dec 7) Output: 6
+PASSED! Input: ((lambda (x) (+ x 1)) 5) Output: 6
+PASSED! Input: ((lambda (x y) (* x y)) 3 4) Output: 12
+PASSED! Input: ((lambda () 42)) Output: 42
+PASSED! Input: ((lambda (x) (set t (* x 2)) (+ t 5)) 10) Output: 25
+PASSED! Input: (define fact (lambda (n) (if (lte n 1) 1 (* n (fact (- n 1)))))) Output: (lambda (n) (if (lte n 1) 1 (* n (fact (- n 1)))))
+PASSED! Input: (fact 0) Output: 1
+PASSED! Input: (fact 1) Output: 1
+PASSED! Input: (fact 5) Output: 120
+PASSED! Input: (fact 7) Output: 5040
+PASSED! Input: (define fib (lambda (n) (if (lte n 1) n (+ (fib (- n 1)) (fib (- n 2)))))) Output: (lambda (n) (if (lte n 1) n (+ (fib (- n 1)) (fib (- n 2)))))
+PASSED! Input: (fib 0) Output: 0
+PASSED! Input: (fib 1) Output: 1
+PASSED! Input: (fib 6) Output: 8
+PASSED! Input: (fib 8) Output: 21
+PASSED! Input: (define max2 (lambda (a b) (if (gt a b) a b))) Output: (lambda (a b) (if (gt a b) a b))
+PASSED! Input: (max2 3 5) Output: 5
+PASSED! Input: (max2 9 2) Output: 9
+PASSED! Input: (define min2 (lambda (a b) (if (lt a b) a b))) Output: (lambda (a b) (if (lt a b) a b))
+PASSED! Input: (min2 3 5) Output: 3
+PASSED! Input: (min2 9 2) Output: 2
+PASSED! Input: (define abs (lambda (n) (if (lt n 0) (- 0 n) n))) Output: (lambda (n) (if (lt n 0) (- 0 n) n))
+PASSED! Input: (abs -5) Output: 5
+PASSED! Input: (abs 7) Output: 7
+PASSED! Input: (define evenp (lambda (n) (eq (mod n 2) 0))) Output: (lambda (n) (eq (mod n 2) 0))
+PASSED! Input: (evenp 4) Output: True
+PASSED! Input: (evenp 7) Output: ()
+PASSED! Input: (define oddp (lambda (n) (not (evenp n)))) Output: (lambda (n) (not (evenp n)))
+PASSED! Input: (oddp 4) Output: ()
+PASSED! Input: (oddp 7) Output: True
+PASSED! Input: (define id (lambda (x) x)) Output: (lambda (x) x)
+PASSED! Input: (id 42) Output: 42
+PASSED! Input: (id "hello") Output: "hello"
+PASSED! Input: (id (quote (1 2))) Output: (1 2)
+PASSED! Input: ((lambda (f x) (f x)) inc 10) Output: 11
+PASSED! Input: ((lambda (f x) (f x)) square 5) Output: 25
+PASSED! Input: ((lambda (f) (f 3)) (lambda (y) (* y y))) Output: 9
+PASSED! Input: ((lambda (a b) (add a b)) 100 200) Output: 300
+PASSED! Input: (map (lambda (x) (* x x)) '(1 2 3)) Output: (1 4 9)
+PASSED! Input: (map (lambda (n) (+ n 1)) '(1 2 3 4)) Output: (2 3 4 5)
+PASSED! Input: (map (lambda (x) (if (lt x 0) (- 0 x) x)) '(-3 -2 -1 0 1 2 3)) Output: (3 2 1 0 1 2 3)
+PASSED! Input: (map (lambda (x) (if (eq (mod x 2) 0) 'even 'odd)) '(1 2 3 4 5)) Output: (odd even odd even odd)
+PASSED! Input: (map (lambda (x) (add x 10)) '(5 10 15)) Output: (15 20 25)
+PASSED! Input: (map inc '(10 20 30)) Output: (11 21 31)
+PASSED! Input: (map square '(2 4 6)) Output: (4 16 36)
+PASSED! Input: (map fact '(0 1 2 3 4)) Output: (1 1 2 6 24)
+PASSED! Input: (map fib '(0 1 2 3 4 5 6)) Output: (0 1 1 2 3 5 8)
+PASSED! Input: (map (lambda (xs) (map square xs)) '((1 2) (3 4) (5))) Output: ((1 4) (9 16) (25))
+PASSED! Input: (map (lambda (n) (if (gt n 5) 'big 'small)) '(3 5 7 9)) Output: (small small big big)
+PASSED! Input: (map (lambda (x) (eq x 0)) '(-1 0 1)) Output: (() True ())
+PASSED! Input: (map (lambda (s) (string s)) '("a" "b")) Output: (True True)
+PASSED! Input: (map (lambda (n) (number n)) '(1 2 3 "x")) Output: (True True True ())
+PASSED! Input: (map (lambda (lst) (list lst)) '(() (1) (1 2))) Output: (True True True)
+PASSED! Input: (map (lambda (x) (add (mul x x) 1)) '(1 2 3)) Output: (2 5 10)
+PASSED! Input: (map (lambda (x) (sub x 1)) '(5 6 7)) Output: (4 5 6)
+PASSED! Input: (map (lambda (x) (div x 2)) '(4 6 8)) Output: (2 3 4)
+PASSED! Input: (map (lambda (x) (mod x 3)) '(3 4 5 6 7)) Output: (0 1 2 0 1)
+PASSED! Input: (map (lambda (x) (lte x 5)) '(4 5 6)) Output: (True True ())
+PASSED! Input: (map (lambda (x) (gte x 5)) '(4 5 6)) Output: (() True True)
+PASSED! Input: (map (lambda (x) (gt x 5)) '(4 5 6)) Output: (() () True)
+PASSED! Input: (map (lambda (x) (lt x 5)) '(4 5 6)) Output: (True () ())
+PASSED! Input: (map (lambda (x) (if (eq x 2) 'hit 'miss)) '(1 2 3)) Output: (miss hit miss)
+PASSED! Input: (map (lambda (x) (if (null x) 'empty 'nonempty)) '(() (1) (2 3))) Output: (empty nonempty nonempty)
+PASSED! Input: (map (lambda (x) (not x)) '(True () True ())) Output: (() True () True)
+PASSED! Input: (map (lambda (x) (and x True)) '(True () True ())) Output: (True () True ())
+PASSED! Input: (map (lambda (x) (or x True)) '(True () True ())) Output: (True True True True)
+PASSED! Input: (map (lambda (x) (cons x '(z))) '(a b c)) Output: ((42 z) (11 z) (1 z))
+PASSED! Input: (map (lambda (x) (car (quote (x y z)))) '(1 2 3)) Output: (x x x)
+PASSED! Input: (map (lambda (x) (cdr (quote (a b)))) '(1 2 3)) Output: ((b) (b) (b))
+PASSED! Input: (map (lambda (x) (quote (1 2))) '(a b)) Output: ((1 2) (1 2))
+PASSED! Input: (map (lambda (x) x) '(a b c)) Output: (42 11 1)
+PASSED! Input: (map (lambda (x) x) '()) Output: ()
+PASSED! Input: (map (lambda (x) (map (lambda (y) (* x y)) '(1 2 3))) '(1 2)) Output: ((1 2 3) (2 4 6))
+PASSED! Input: (map (lambda (n) (if (evenp n) 'E 'O)) '(1 2 3 4)) Output: (O E O E)
+PASSED! Input: (map (lambda (n) (if (oddp n) 'O 'E)) '(1 2 3 4)) Output: (O E O E)
+PASSED! Input: (map (lambda (n) (abs n)) '(-3 -2 -1 0 1)) Output: (3 2 1 0 1)
+PASSED! Input: (map (lambda (n) (max2 n 5)) '(3 5 7)) Output: (5 5 7)
+PASSED! Input: (map (lambda (n) (min2 n 5)) '(3 5 7)) Output: (3 5 5)
+PASSED! Input: (map (lambda (x) (gte (add x 1) 3)) '(1 2 3)) Output: (() True True)
+PASSED! Input: (add (mul 2 3) 4) Output: 10
+PASSED! Input: (mul (add 2 3) 4) Output: 20
+PASSED! Input: (sub 20 (div 10 2)) Output: 15
+PASSED! Input: (add (mul 2 (sub 10 5)) 3) Output: 13
+PASSED! Input: (div (add (mul 3 4) 8) 2) Output: 10
+PASSED! Input: (car (quote (1 2 3))) Output: 1
+PASSED! Input: (cdr (quote (1 2 3))) Output: (2 3)
+PASSED! Input: (cons 0 (quote (1 2))) Output: (0 1 2)
+PASSED! Input: (set a 5) Output: 5
+PASSED! Input: (set b 3) Output: 3
+PASSED! Input: (add (mul a b) 2) Output: 17
+PASSED! Input: (set num 10) Output: 10
+PASSED! Input: (add num 5) Output: 15
+PASSED! Input: (set x1 7) Output: 7
+PASSED! Input: (set x2 3) Output: 3
+PASSED! Input: (mul x1 x2) Output: 21
+PASSED! Input: (add (sub (mul 4 5) 8) (div 12 3)) Output: 16
+PASSED! Input: (set base 10) Output: 10
+PASSED! Input: (set radius 5) Output: 5
+
+Summary:
+ Passed: 350 
+ Failed: 0 
