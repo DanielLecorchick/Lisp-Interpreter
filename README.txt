@@ -1,7 +1,7 @@
 Welcome to my Lisp Interpreter
 
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 
 How to run lisp.c:
@@ -12,7 +12,7 @@ To Run:
 Regular Interpreter: ./a.out
 Testing Suite: ./a.out --test
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 About:
 This program is a working lisp interpreter with minor drawbacks, mainly in the memory management department, written in C
@@ -32,7 +32,7 @@ It supports:
 - Printing: outputs valid Lisp syntax for atoms and lists.
 - Memory: dynamic allocation, deep copy, and cleanup with freeSExpr.
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 Files included:
 In this submission there are several files those being:
@@ -42,7 +42,7 @@ In this submission there are several files those being:
 - test.txt: this is a file going over the test plan and the test results once ran
 - makefile: this is a make file that compiles the intepreter in either normal or testing modes
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 Test Plan (This can also be found within test.txt):
 
@@ -86,7 +86,7 @@ Results:
 - Passed: 350
 - Failed: 0
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 
 Program Structure:
 
@@ -112,7 +112,9 @@ lisp.c Program Sections:
 - Testing
 - Main
 
----------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
+Known Limitations:
 
 - Division by zero is not handled and will cause a crash.
 - No robust type checking — incorrect inputs may lead to unexpected behavior.
